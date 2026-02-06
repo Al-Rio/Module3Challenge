@@ -12,12 +12,9 @@ namespace Module3Challenge.Pages
 
         public void OnPost()
         {
-            // Read form values safely using TryParse to avoid exceptions
-            int hungerLevel = 0;
-            int dayOfWeek = 0;
-
-            int.TryParse(Request.Form["hungerLevel"], out hungerLevel);
-            int.TryParse(Request.Form["dayOfWeek"], out dayOfWeek);
+            // Get the values from the form
+            int hungerLevel = int.Parse(Request.Form["hungerLevel"]);
+            int dayOfWeek = int.Parse(Request.Form["dayOfWeek"]);
 
             // If-else chain to decide which animal needs feeding
             //  If hunger >= 8, Lion needs a big meal
@@ -33,42 +30,42 @@ namespace Module3Challenge.Pages
             }
             else
             {
-                HungerMessage = "Tortoise: Slow and steady—I'll have some lettuce.";
+                HungerMessage = "Tortoise: Slow and steady! I'll have some lettuce.";
             }
 
-            // Ternary operator to choose which animal sound to play/listen to
-            // If hungerLevel >= 8 -> Lion sound, otherwise Monkey sound
-            SoundMessage = hungerLevel >= 8
-                ? "Listen to the Lion: Roar!"
-                : "Listen to the Monkey: Ooh ooh!";
+            // ternary operator
+            // If hungerLevel >= 8, set SoundMessage to "Listen to the Lion: Roar!"
+            // Else, set SoundMessage to "Listen to the Monkey: Ooh ooh!"
+            SoundMessage = hungerLevel >= 8 ? "Listen to the Lion: Roar!" : "Listen to the Monkey: Ooh ooh!";
 
-            // Switch statement to set a fun zoo event for each day of the week
-            // 1 = Sunday, 2 = Monday, ..., 7 = Saturday
+            // switch statement
+            // Use dayOfWeek to set DayMessage with a fun zoo event for each day 
+            // 1 = Monday ==> 7 = Sunday
             switch (dayOfWeek)
                 {
                     case 1:
-                        DayMessage = "Sunday: Tours all day";
+                        DayMessage = "Monday: Bird show !";
                     break;
                     case 2:
-                        DayMessage = "Monday: Penguin feed";
+                        DayMessage = "Tuesday: Elephant show !";
                     break;
                     case 3:
-                        DayMessage = "Tuesday: Elephant talk";
+                        DayMessage = "Wednesday: crocodile show !";
                     break;
                     case 4:
-                        DayMessage = "Wednesday: Reptile show";
+                        DayMessage = "Thursday: Penguin feed !";
                     break;
                     case 5:
-                        DayMessage = "Thursday: Bird show";
+                        DayMessage = "Friday: Family games !";
                     break;
                     case 6:
-                        DayMessage = "Friday: Family games";
+                        DayMessage = "Saturday: Crafts and fun !";
                     break;
                     case 7:
-                        DayMessage = "Saturday: Crafts and fun";
+                        DayMessage = "Sunday: Tours all day !";
                     break;
                     default:
-                        DayMessage = "Enter a number 1–7 for the day's event";
+                        DayMessage = "Enter a number (1 - 7) for the day's event";
                     break;
                 }
         }
